@@ -1,8 +1,12 @@
+
+
 commit a0911d2877ca7dddc53ece0373169a51f37cb7fc
 Author: sampo <sampopitkanen@hotmail.com>
 Date:   Mon Mar 19 19:06:10 2018 +0200
 
     poistettu file1 ja file2 nimetty file22
+
+
 
  tiedostoja/file2             | 0
  tiedostoja/{file1 => file22} | 0

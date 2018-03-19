@@ -1,0 +1,114 @@
+commit a0911d2877ca7dddc53ece0373169a51f37cb7fc
+Author: sampo <sampopitkanen@hotmail.com>
+Date:   Mon Mar 19 19:06:10 2018 +0200
+
+    poistettu file1 ja file2 nimetty file22
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 1ee1a3ec888a2271ecd74476aee8bca73c8aa418
+Author: sampo <sampopitkanen@hotmail.com>
+Date:   Mon Mar 19 19:02:49 2018 +0200
+
+    lisätty file1, file2, file3 kansioon tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 56539e5abef44762b64485b0411bd88661b472c5
+Author: sampo <sampopitkanen@hotmail.com>
+Date:   Mon Mar 19 18:55:39 2018 +0200
+
+    muokattu eka.txt ja kolmas.txt
+
+ eka.txt    | 2 ++
+ kolmas.txt | 2 ++
+ 2 files changed, 4 insertions(+)
+
+commit 2aa2a0ae05f024979b74f87f25879895cf3b5e2d
+Author: sampo <sampopitkanen@hotmail.com>
+Date:   Mon Mar 19 18:52:54 2018 +0200
+
+    tiedosto.txt nimetty eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit b5506101f00c079d6a2fd84205a49b5ea57fae45
+Author: sampo <sampopitkanen@hotmail.com>
+Date:   Mon Mar 19 18:51:49 2018 +0200
+
+    toinen.txt poistettu
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 1361bd9c18c4b1eb0ad6d4a9f58f95a7f280044c
+Author: sampo <sampopitkanen@hotmail.com>
+Date:   Sat Mar 17 21:06:18 2018 +0200
+
+    tiedosto.txt muokattu
+
+ tiedosto.txt | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+commit 584d662b56aafe846b5253955d4e847af46b474c
+Author: sampo <sampopitkanen@hotmail.com>
+Date:   Sat Mar 17 21:03:47 2018 +0200
+
+    tiedosto.txt lisätty teksti
+
+ tiedosto.txt | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+commit 4b7f1e4b1b7610b26aa7c63417fda64f94944679
+Author: sampo <sampopitkanen@hotmail.com>
+Date:   Sat Mar 17 20:30:34 2018 +0200
+
+    stuff/ lisätty
+
+ stuff/teksti.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 208096fc0431e14a72116efbe833baa82333ff65
+Author: sampo <sampopitkanen@hotmail.com>
+Date:   Sat Mar 17 20:29:39 2018 +0200
+
+    muokattu toinen.txt ja kolmas.txt
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit c152e2d429aa37de9b73cae1e788cbde823b6bde
+Author: sampo <sampopitkanen@hotmail.com>
+Date:   Sat Mar 17 20:28:15 2018 +0200
+
+    kolmas.txt lisätty
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c177f6d6e7b078e777795178ec9c38b79fd5aad1
+Author: sampo <sampopitkanen@hotmail.com>
+Date:   Sat Mar 17 20:25:27 2018 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 3b79438e497afaf09a6ececb414b401d43997b0d
+Author: sampo <sampopitkanen@hotmail.com>
+Date:   Sat Mar 17 20:18:41 2018 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+

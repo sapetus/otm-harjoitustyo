@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MaksukorttiTest {
-
+    
     Maksukortti kortti;
 
     @Before
@@ -16,5 +16,41 @@ public class MaksukorttiTest {
     @Test
     public void luotuKorttiOlemassa() {
         assertTrue(kortti!=null);      
+    }
+    
+    @Test
+    public void kortinSaldoAlussaOikea() {
+        assertEquals("Saldo: 0.10", kortti.toString());
+    }
+    
+    @Test
+    public void rahanLisaaminenKasvattaaSaldoaOikein() {
+        kortti.lataaRahaa(100);
+        
+        assertEquals("Saldo: 1.10", kortti.toString());
+    }
+    
+    @Test
+    public void saldoVaheneeJosRahaaOnTarpeeksi() {
+        assertEquals(true, kortti.otaRahaa(10));
+    }
+    
+    @Test
+    public void saldoVaheneeOikein() {
+        kortti.otaRahaa(10);
+        
+        assertEquals("Saldo: 0.0", kortti.toString());
+    }
+    
+    @Test
+    public void saldoEiVaheneJosRahaaEiOleTarpeeksi() {
+        assertEquals(false, kortti.otaRahaa(11));
+    }
+    
+    @Test
+    public void saldoEiMuutuJosSaldoEiRiita() {
+        kortti.otaRahaa(100);
+        
+        assertEquals("Saldo: 0.10", kortti.toString());
     }
 }

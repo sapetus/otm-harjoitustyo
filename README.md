@@ -12,5 +12,5 @@ Tässä muokkaus.
 
 [gitlog.txt](https://github.com/sapetus/otm-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
-## Viikon 2 laskarit (https://github.com/sapetus/otm-harjoitustyo/tree/master/laskarit/viikko2)
+## [Viikon 2 laskarit](https://github.com/sapetus/otm-harjoitustyo/tree/master/laskarit/viikko2)
 

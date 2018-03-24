@@ -39,7 +39,7 @@ public class MaksukorttiTest {
     public void saldoVaheneeOikein() {
         kortti.otaRahaa(10);
         
-        assertEquals("Saldo: 0.0", kortti.toString());
+        assertEquals(0, kortti.saldo());
     }
     
     @Test
@@ -51,6 +51,6 @@ public class MaksukorttiTest {
     public void saldoEiMuutuJosSaldoEiRiita() {
         kortti.otaRahaa(100);
         
-        assertEquals("Saldo: 0.10", kortti.toString());
+        assertEquals(10, kortti.saldo());
     }
 }

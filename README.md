@@ -11,3 +11,4 @@
 
 ## [Viikon 2 laskarit](https://github.com/sapetus/otm-harjoitustyo/tree/master/laskarit/viikko2)
 
+## [Viikon 3 laskarit](https://github.com/sapetus/otm-harjoitustyo/tree/master/laskarit/viikko3)

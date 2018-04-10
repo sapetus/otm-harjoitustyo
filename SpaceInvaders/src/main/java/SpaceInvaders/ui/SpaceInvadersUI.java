@@ -1,6 +1,6 @@
-
 package SpaceInvaders.ui;
 
+import SpaceInvaders.characters.Enemy;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -12,8 +12,8 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class SpaceInvadersUI extends Application{
-    
+public class SpaceInvadersUI extends Application {
+
     private final int HEIGHT = 640;
     private final int WIDTH = 640;
     private final int distanceFromTop = 96;
@@ -23,30 +23,42 @@ public class SpaceInvadersUI extends Application{
     private final int enemyWidth = 36;
     private final int enemyHeight = 24;
     
+    private Pane gamePlatform;
+
     Rectangle[] enemyArray = new Rectangle[55];
-    
-    public static void main(String [] args){
+
+    public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Space Invaders");
-        
-        Pane gamePlatform = new Pane();
+
+        gamePlatform = new Pane();
         gamePlatform.setPrefSize(WIDTH, HEIGHT);
         gamePlatform.setBackground(new Background(
                 new BackgroundFill(
                         Paint.valueOf("#000000"),
                         CornerRadii.EMPTY,
                         Insets.EMPTY)
-        )); 
-        
+        ));
+
+        FillBoardWithEnemies();
+
+        Scene mainScene = new Scene(gamePlatform);
+        primaryStage.setScene(mainScene);
+        primaryStage.show();
+    }
+
+    public void FillBoardWithEnemies() {
+        Enemy basicEnemy1 = new Enemy(enemyWidth, enemyHeight);
         int enemyIndex = 0;
+        
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 5; j++) {
-                enemyArray[enemyIndex] = EnemyMaker();
-                
+                enemyArray[enemyIndex] = basicEnemy1.EnemyMaker();
+
                 gamePlatform.getChildren().add(enemyArray[enemyIndex]);
                 gamePlatform.getChildren().get(enemyIndex)
                         .setTranslateX(distanceFromSide + distanceFromEachOtherHorizontal * i);
@@ -55,21 +67,5 @@ public class SpaceInvadersUI extends Application{
                 enemyIndex++;
             }
         }
-        
-        Scene mainScene = new Scene(gamePlatform);
-        primaryStage.setScene(mainScene);
-        primaryStage.show();
-    }
-    
-    public Rectangle EnemyMaker() { //Creates enemies
-        Rectangle enemy = new Rectangle();
-        
-        enemy.setWidth(enemyWidth);
-        enemy.setHeight(enemyHeight);
-        enemy.setArcWidth(5);
-        enemy.setArcHeight(5);
-        enemy.setFill(Paint.valueOf("#ffffff"));
-        
-        return enemy;
     }
 }

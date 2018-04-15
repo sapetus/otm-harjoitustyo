@@ -11,9 +11,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class EnemyTest {
-
+    
     Enemy enemy;
-
+    
     @Before
     public void setUp() {
         enemy = new Enemy(50, 50);
@@ -22,47 +22,37 @@ public class EnemyTest {
     @Test
     public void createsAnEnemyWithRightHeight() {
         int height = 50;
-        assertEquals(height, this.enemy.getHeight());
+        assertEquals(height,(int) this.enemy.getHeight());
     }
     
     @Test
     public void createsAnEnemyWithRightWidth() {
         int width = 50;
-        assertEquals(width, this.enemy.getWidth());
+        assertEquals(width,(int) this.enemy.getWidth());
     }
     
     @Test
     public void enemyMakerWidthIsEqualToEnemyWidth() {
-        Rectangle enemyRectangle = enemy.EnemyMaker();
-        
-        assertEquals(this.enemy.getWidth(), (int) enemyRectangle.getWidth());
+        assertEquals((int)this.enemy.getWidth(), (int) enemy.getWidth());
     }
     
     @Test
     public void enemyMakerHeightIsEqualToEnemyHeight() {
-        Rectangle enemyRectangle = enemy.EnemyMaker();
-        
-        assertEquals(this.enemy.getHeight(), (int) enemyRectangle.getHeight());
+        assertEquals((int)this.enemy.getHeight(), (int) enemy.getHeight());
     }
     
     @Test
     public void enemyMakerArcWidthIsFive() {
-        Rectangle enemyRectangle = enemy.EnemyMaker();
-        
-        assertEquals(5, (int) enemyRectangle.getArcWidth());
+        assertEquals(5, (int) enemy.getRectangle().getArcWidth());
     }
     
     @Test
     public void enemyMakerArcHeightIsFive() {
-        Rectangle enemyRectangle = enemy.EnemyMaker();
-        
-        assertEquals(5, (int) enemyRectangle.getArcHeight());
+        assertEquals(5, (int) enemy.getRectangle().getArcHeight());
     }
     
     @Test
     public void enemyMakerColorIsWhite() {
-        Rectangle enemyRectangle = enemy.EnemyMaker();
-        
-        assertEquals(Paint.valueOf("#ffffff"), enemyRectangle.getFill());
+        assertEquals(Paint.valueOf("#ffffff"), enemy.getRectangle().getFill());
     }
 }

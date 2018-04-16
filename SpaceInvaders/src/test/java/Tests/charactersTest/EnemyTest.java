@@ -1,4 +1,4 @@
-package charactersTest;
+package Tests.charactersTest;
 
 import SpaceInvaders.characters.Enemy;
 import javafx.scene.paint.Paint;

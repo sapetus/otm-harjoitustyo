@@ -1,1 +1,1 @@
-[luokkakaavio](https://yuml.me/076a5fab.jpg)
+![luokkakaavio](https://yuml.me/076a5fab.jpg)

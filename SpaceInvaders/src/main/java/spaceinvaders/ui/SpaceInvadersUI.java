@@ -1,11 +1,15 @@
-package SpaceInvaders.ui;
+package spaceinvaders.ui;
 
-import SpaceInvaders.characters.Enemy;
-import SpaceInvaders.characters.Player;
+import spaceinvaders.characters.Ammo;
+import spaceinvaders.characters.Enemy;
+import spaceinvaders.characters.Player;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -23,18 +27,40 @@ public class SpaceInvadersUI extends Application {
     private final int distanceFromEachOtherVertical = 34;
     private final int enemyWidth = 28;
     private final int enemyHeight = 24;
-
     private Pane gamePlatform;
+    private long time;
 
     Enemy[] enemyArray = new Enemy[55];
     Enemy basicEnemy1;
-
     Player player;
+    ArrayList<Ammo> ammoList = new ArrayList<>();
+    HashMap<KeyCode, Boolean> keys = new HashMap<>();
 
     AnimationTimer animation = new AnimationTimer() {
         @Override
         public void handle(long l) {
             basicEnemy1.StartEnemyMovement(enemyArray);
+
+            if (keys.getOrDefault(KeyCode.LEFT, false) && player.getBody().getTranslateX() > 25) {
+                player.MovePlayerLeft();
+            }
+            if (keys.getOrDefault(KeyCode.RIGHT, false) && player.getBody().getTranslateX() < 587) {
+                player.MovePlayerRight();
+            }
+            if (keys.getOrDefault(KeyCode.SPACE, false) && System.currentTimeMillis() - time >= 1000) {
+                Ammo ammo = player.Shoot();
+                ammoList.add(ammo);
+                gamePlatform.getChildren().add(ammo.getAmmo());
+                time = System.currentTimeMillis();
+            }
+
+            ammoList.forEach((ammo) -> {
+                ammo.MoveAmmo();
+                ammoList.stream()
+                        .filter(ammo2 -> ammo2.getAmmo().getTranslateY() < -5)
+                        .forEach(ammus2 -> gamePlatform.getChildren().remove(ammus2.getAmmo()));
+            });
+
         }
     };
 
@@ -59,6 +85,14 @@ public class SpaceInvadersUI extends Application {
         CreatePlayer();
 
         Scene mainScene = new Scene(gamePlatform);
+
+        mainScene.setOnKeyPressed(event -> {
+            keys.put(event.getCode(), Boolean.TRUE);
+        });
+        mainScene.setOnKeyReleased(event -> {
+            keys.put(event.getCode(), Boolean.FALSE);
+        });
+
         primaryStage.setScene(mainScene);
         primaryStage.show();
         animation.start();
@@ -91,6 +125,6 @@ public class SpaceInvadersUI extends Application {
         gamePlatform.getChildren().get(55).setTranslateY(600);
 
         gamePlatform.getChildren().get(56).setTranslateX(WIDTH / 2 + 12);
-        gamePlatform.getChildren().get(56).setTranslateY(592);
+        gamePlatform.getChildren().get(56).setTranslateY(593);
     }
 }

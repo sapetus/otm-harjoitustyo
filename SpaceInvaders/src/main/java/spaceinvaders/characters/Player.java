@@ -1,4 +1,4 @@
-package SpaceInvaders.characters;
+package spaceinvaders.characters;
 
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
@@ -9,6 +9,8 @@ public class Player {
 
     Polygon body;
     Polygon cannon;
+
+    double movementSpeed = 3;
 
     public Player() {
         this.body = new Polygon();
@@ -40,5 +42,25 @@ public class Player {
 
     public Polygon getCannon() {
         return this.cannon;
+    }
+
+    public void MovePlayerRight() {
+        this.body.setTranslateX(this.body.getTranslateX() + movementSpeed);
+        this.cannon.setTranslateX(this.cannon.getTranslateX() + movementSpeed);
+    }
+
+    public void MovePlayerLeft() {
+        this.body.setTranslateX(this.body.getTranslateX() - movementSpeed);
+        this.cannon.setTranslateX(this.cannon.getTranslateX() - movementSpeed);
+    }
+
+    public Ammo Shoot() {
+        Ammo ammo = new Ammo();
+
+        ammo.getAmmo().setTranslateX(this.cannon.getTranslateX() + 1);
+        ammo.getAmmo().setTranslateY(this.cannon.getTranslateY());
+        ammo.MoveAmmo();
+
+        return ammo;
     }
 }

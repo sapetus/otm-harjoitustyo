@@ -1,6 +1,6 @@
 package Tests.charactersTest;
 
-import SpaceInvaders.characters.Enemy;
+import spaceinvaders.characters.Enemy;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import org.junit.After;
@@ -55,4 +55,10 @@ public class EnemyTest {
     public void enemyMakerColorIsWhite() {
         assertEquals(Paint.valueOf("#ffffff"), enemy.getRectangle().getFill());
     }
+    
+    @Test
+    public void returnsEnemyRectangle() {
+        assertEquals(Rectangle.class, enemy.getRectangle().getClass());
+    }
+    
 }

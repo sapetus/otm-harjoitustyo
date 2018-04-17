@@ -1,11 +1,11 @@
-package SpaceInvaders.characters;
+package spaceinvaders.characters;
 
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 public class Enemy {
 
-    private double movementSpeedHorizontal = 0.34;
+    private double movementSpeedHorizontal = 0.33;
 
     Rectangle hitBox;
     Enemy[] enemyArray;
@@ -39,13 +39,11 @@ public class Enemy {
 
     public void StartEnemyMovement(Enemy array[]) {
         enemyArray = array;
-
         EnemyMovementVertical(enemyArray);
     }
 
     public void EnemyMovementVertical(Enemy array[]) {
         enemyArray = array;
-
         for (Enemy enemy : enemyArray) {
             enemy.getRectangle().setTranslateX(enemy.getRectangle().getTranslateX() + movementSpeedHorizontal);
 
@@ -65,7 +63,6 @@ public class Enemy {
                 isAboveLine = false;
             }
         }
-
         if (isAboveLine == true) {
             for (Enemy enemy2 : array) {
                 enemy2.getRectangle().setTranslateY(enemy2.getRectangle().getTranslateY() + 34);

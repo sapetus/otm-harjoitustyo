@@ -36,34 +36,6 @@ public class SpaceInvadersUI extends Application {
     ArrayList<Ammo> ammoList = new ArrayList<>();
     HashMap<KeyCode, Boolean> keys = new HashMap<>();
 
-    AnimationTimer animation = new AnimationTimer() {
-        @Override
-        public void handle(long l) {
-            basicEnemy1.StartEnemyMovement(enemyArray);
-
-            if (keys.getOrDefault(KeyCode.LEFT, false) && player.getBody().getTranslateX() > 25) {
-                player.MovePlayerLeft();
-            }
-            if (keys.getOrDefault(KeyCode.RIGHT, false) && player.getBody().getTranslateX() < 587) {
-                player.MovePlayerRight();
-            }
-            if (keys.getOrDefault(KeyCode.SPACE, false) && System.currentTimeMillis() - time >= 1000) {
-                Ammo ammo = player.Shoot();
-                ammoList.add(ammo);
-                gamePlatform.getChildren().add(ammo.getAmmo());
-                time = System.currentTimeMillis();
-            }
-
-            ammoList.forEach((ammo) -> {
-                ammo.MoveAmmo();
-                ammoList.stream()
-                        .filter(ammo2 -> ammo2.getAmmo().getTranslateY() < -5)
-                        .forEach(ammus2 -> gamePlatform.getChildren().remove(ammus2.getAmmo()));
-            });
-
-        }
-    };
-
     public static void main(String[] args) {
         launch(args);
     }
@@ -97,6 +69,34 @@ public class SpaceInvadersUI extends Application {
         primaryStage.show();
         animation.start();
     }
+
+    AnimationTimer animation = new AnimationTimer() {
+        @Override
+        public void handle(long l) {
+            basicEnemy1.StartEnemyMovement(enemyArray);
+
+            if (keys.getOrDefault(KeyCode.LEFT, false) && player.getBody().getTranslateX() > 25) {
+                player.MovePlayerLeft();
+            }
+            if (keys.getOrDefault(KeyCode.RIGHT, false) && player.getBody().getTranslateX() < 587) {
+                player.MovePlayerRight();
+            }
+            if (keys.getOrDefault(KeyCode.SPACE, false) && System.currentTimeMillis() - time >= 1000) {
+                Ammo ammo = player.Shoot();
+                ammoList.add(ammo);
+                gamePlatform.getChildren().add(ammo.getAmmo());
+                time = System.currentTimeMillis();
+            }
+
+            ammoList.forEach((ammo) -> {
+                ammo.MoveAmmo();
+                ammoList.stream()
+                        .filter(ammo2 -> ammo2.getAmmo().getTranslateY() < -5)
+                        .forEach(ammus2 -> gamePlatform.getChildren().remove(ammus2.getAmmo()));
+            });
+
+        }
+    };
 
     public void FillBoardWithEnemies() {
         int enemyIndex = 0;

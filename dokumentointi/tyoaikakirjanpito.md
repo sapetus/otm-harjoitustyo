@@ -14,3 +14,6 @@
        Aikaa käytetty noin 6.5h
 
 Aikaa käytetty yhteensä noin 11h.
+
+## Viikko 5
+-22.4. Törmäykset ja pisteiden ylläpito luotu. ~1h

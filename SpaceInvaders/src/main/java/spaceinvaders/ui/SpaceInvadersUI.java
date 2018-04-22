@@ -1,10 +1,10 @@
 package spaceinvaders.ui;
 
-import spaceinvaders.characters.Ammo;
-import spaceinvaders.characters.Enemy;
+import java.awt.Font;
 import spaceinvaders.characters.Player;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -15,7 +15,10 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import spaceinvaders.characters.Ammo;
+import spaceinvaders.characters.Enemy;
 
 public class SpaceInvadersUI extends Application {
 
@@ -29,12 +32,14 @@ public class SpaceInvadersUI extends Application {
     private final int enemyHeight = 24;
     private Pane gamePlatform;
     private long time;
+    private int points = 0;
 
-    Enemy[] enemyArray = new Enemy[55];
+    ArrayList<Enemy> enemyArray = new ArrayList<>();
     Enemy basicEnemy1;
     Player player;
     ArrayList<Ammo> ammoList = new ArrayList<>();
     HashMap<KeyCode, Boolean> keys = new HashMap<>();
+    Text pointText = new Text("points: " + points);
 
     public static void main(String[] args) {
         launch(args);
@@ -55,6 +60,11 @@ public class SpaceInvadersUI extends Application {
 
         FillBoardWithEnemies();
         CreatePlayer();
+
+        pointText.setFill(Paint.valueOf("#ffffff"));
+        pointText.setTranslateX(15);
+        pointText.setTranslateY(15);
+        gamePlatform.getChildren().add(pointText);
 
         Scene mainScene = new Scene(gamePlatform);
 
@@ -90,10 +100,34 @@ public class SpaceInvadersUI extends Application {
 
             ammoList.forEach((ammo) -> {
                 ammo.MoveAmmo();
-                ammoList.stream()
-                        .filter(ammo2 -> ammo2.getAmmo().getTranslateY() < -5)
-                        .forEach(ammus2 -> gamePlatform.getChildren().remove(ammus2.getAmmo()));
+
+                enemyArray.forEach((enemy) -> {
+                    if (enemy.Collision(ammo)) {
+                        ammo.setIsHit(true);
+                        enemy.setIsHit(true);
+                        points += 10;
+                        pointText.setText("points: " + points);
+                    }
+                });
             });
+
+            ammoList.stream()
+                    .filter(ammo2 -> ammo2.getIsHit())
+                    .forEach(ammo2 -> gamePlatform.getChildren().remove(ammo2.getAmmo()));
+            ammoList.removeAll(ammoList.stream()
+                    .filter(ammo2 -> ammo2.getIsHit())
+                    .collect(Collectors.toList()));
+
+            enemyArray.stream()
+                    .filter(enemy -> enemy.getIsHit())
+                    .forEach(enemy -> gamePlatform.getChildren().remove(enemy.getRectangle()));
+            enemyArray.removeAll(enemyArray.stream()
+                    .filter(enemy -> enemy.getIsHit())
+                    .collect(Collectors.toList()));
+
+            ammoList.stream()
+                    .filter(ammo3 -> ammo3.getAmmo().getTranslateY() < -5)
+                    .forEach(ammo3 -> gamePlatform.getChildren().remove(ammo3.getAmmo()));
 
         }
     };
@@ -104,9 +138,9 @@ public class SpaceInvadersUI extends Application {
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 5; j++) {
                 basicEnemy1 = new Enemy(enemyWidth, enemyHeight);
-                enemyArray[enemyIndex] = basicEnemy1;
+                enemyArray.add(basicEnemy1);
 
-                gamePlatform.getChildren().add(enemyArray[enemyIndex].getRectangle());
+                gamePlatform.getChildren().add(basicEnemy1.getRectangle());
                 gamePlatform.getChildren().get(enemyIndex)
                         .setTranslateX(distanceFromSide + distanceFromEachOtherHorizontal * i);
                 gamePlatform.getChildren().get(enemyIndex)

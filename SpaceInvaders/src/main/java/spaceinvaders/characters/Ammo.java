@@ -9,7 +9,7 @@ public class Ammo {
 
     Rectangle ammo;
 
-    double movementSpeed = 5;
+    double movementSpeed = 6;
     boolean isHit;
     
     Point2D movement;

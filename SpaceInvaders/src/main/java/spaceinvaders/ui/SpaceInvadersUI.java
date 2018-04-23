@@ -1,21 +1,24 @@
 package spaceinvaders.ui;
 
-import java.awt.Font;
 import spaceinvaders.characters.Player;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
-import javafx.scene.text.Text;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
 import spaceinvaders.characters.Ammo;
 import spaceinvaders.characters.Enemy;
@@ -49,6 +52,7 @@ public class SpaceInvadersUI extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Space Invaders");
 
+        //Game
         gamePlatform = new Pane();
         gamePlatform.setPrefSize(WIDTH, HEIGHT);
         gamePlatform.setBackground(new Background(
@@ -66,21 +70,50 @@ public class SpaceInvadersUI extends Application {
         pointText.setTranslateY(15);
         gamePlatform.getChildren().add(pointText);
 
-        Scene mainScene = new Scene(gamePlatform);
-
-        mainScene.setOnKeyPressed(event -> {
+        Scene gameScene = new Scene(gamePlatform);
+        gameScene.setOnKeyPressed(event -> {
             keys.put(event.getCode(), Boolean.TRUE);
         });
-        mainScene.setOnKeyReleased(event -> {
+        gameScene.setOnKeyReleased(event -> {
             keys.put(event.getCode(), Boolean.FALSE);
         });
+        //Game
+        
+        //Menu
+        StackPane menu = new StackPane();
+        menu.setPrefSize(WIDTH, HEIGHT);
+        menu.setBackground(new Background(
+                new BackgroundFill(
+                        Paint.valueOf("#000000"),
+                        CornerRadii.EMPTY,
+                        Insets.EMPTY)
+        ));
+        
+        Text startText = new Text("Start Game");
+        
+        startText.setFill(Paint.valueOf("#ffffff"));
+        startText.setFont(new Font(30));
+        startText.setTextAlignment(TextAlignment.CENTER);
+        startText.setOnMouseEntered((MouseEvent me) -> {
+            startText.setFont(new Font(40));
+        });
+        startText.setOnMouseExited((MouseEvent me) -> {
+            startText.setFont(new Font(30));
+        });
+        startText.setOnMouseClicked((MouseEvent me) -> {
+            primaryStage.setScene(gameScene);
+        });
+        menu.getChildren().add(startText);
+        //Menu
+        
+        Scene menuScene = new Scene(menu);
 
-        primaryStage.setScene(mainScene);
+        primaryStage.setScene(menuScene);
         primaryStage.show();
-        animation.start();
+        gameAnimation.start();
     }
-
-    AnimationTimer animation = new AnimationTimer() {
+    
+    AnimationTimer gameAnimation = new AnimationTimer() {
         @Override
         public void handle(long l) {
             basicEnemy1.StartEnemyMovement(enemyArray);
@@ -91,7 +124,7 @@ public class SpaceInvadersUI extends Application {
             if (keys.getOrDefault(KeyCode.RIGHT, false) && player.getBody().getTranslateX() < 587) {
                 player.MovePlayerRight();
             }
-            if (keys.getOrDefault(KeyCode.SPACE, false) && System.currentTimeMillis() - time >= 1000) {
+            if (keys.getOrDefault(KeyCode.SPACE, false) && System.currentTimeMillis() - time >= 950) {
                 Ammo ammo = player.Shoot();
                 ammoList.add(ammo);
                 gamePlatform.getChildren().add(ammo.getAmmo());
@@ -117,6 +150,9 @@ public class SpaceInvadersUI extends Application {
             ammoList.removeAll(ammoList.stream()
                     .filter(ammo2 -> ammo2.getIsHit())
                     .collect(Collectors.toList()));
+            ammoList.stream()
+                    .filter(ammo3 -> ammo3.getAmmo().getTranslateY() < -5)
+                    .forEach(ammo3 -> gamePlatform.getChildren().remove(ammo3.getAmmo()));
 
             enemyArray.stream()
                     .filter(enemy -> enemy.getIsHit())
@@ -124,11 +160,10 @@ public class SpaceInvadersUI extends Application {
             enemyArray.removeAll(enemyArray.stream()
                     .filter(enemy -> enemy.getIsHit())
                     .collect(Collectors.toList()));
-
-            ammoList.stream()
-                    .filter(ammo3 -> ammo3.getAmmo().getTranslateY() < -5)
-                    .forEach(ammo3 -> gamePlatform.getChildren().remove(ammo3.getAmmo()));
-
+            
+            if (enemyArray.isEmpty()) {
+                gameAnimation.stop();
+            }
         }
     };
 

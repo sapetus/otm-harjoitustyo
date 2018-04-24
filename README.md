@@ -27,6 +27,6 @@ mvn package
 ###### jarin suorittaminen (ei toimi)
 /target kansiossa java -jar spaceinvaders-1.0-snapshot.jar
 #### Checkstyle
-######tarkistaminen
+###### tarkistaminen
 mvn jxr:jxr checkstyle:checkstyle
 löytyy: /target/site/checkstyle.html 

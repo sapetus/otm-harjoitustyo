@@ -44,22 +44,22 @@ public class Player {
         return this.cannon;
     }
 
-    public void MovePlayerRight() {
+    public void movePlayerRight() {
         this.body.setTranslateX(this.body.getTranslateX() + movementSpeed);
         this.cannon.setTranslateX(this.cannon.getTranslateX() + movementSpeed);
     }
 
-    public void MovePlayerLeft() {
+    public void movePlayerLeft() {
         this.body.setTranslateX(this.body.getTranslateX() - movementSpeed);
         this.cannon.setTranslateX(this.cannon.getTranslateX() - movementSpeed);
     }
 
-    public Ammo Shoot() {
+    public Ammo shoot() {
         Ammo ammo = new Ammo();
 
         ammo.getAmmo().setTranslateX(this.cannon.getTranslateX() + 1);
         ammo.getAmmo().setTranslateY(this.cannon.getTranslateY());
-        ammo.MoveAmmo();
+        ammo.moveAmmo();
 
         return ammo;
     }

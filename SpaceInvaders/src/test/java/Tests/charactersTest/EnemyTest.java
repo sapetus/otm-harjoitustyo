@@ -61,4 +61,15 @@ public class EnemyTest {
         assertEquals(Rectangle.class, enemy.getRectangle().getClass());
     }
     
+    @Test
+    public void enemySpawnsNotHit() {
+        assertEquals(false, this.enemy.getIsHit());
+    }
+    
+    @Test
+    public void setIsHitWorksCorrectly() {
+        this.enemy.setIsHit(true);
+        assertEquals(true, this.enemy.getIsHit());
+    }
+    
 }

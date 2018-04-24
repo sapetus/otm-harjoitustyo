@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import spaceinvaders.characters.Ammo;
 
 public class PlayerTest {
 
@@ -65,5 +66,32 @@ public class PlayerTest {
         assertEquals(pointList, player.getCannon().getPoints());
     }
     
+    @Test
+    public void bodyMovesRightCorrectly() {
+        this.player.movePlayerRight();
+        assertEquals(3, (int) this.player.getBody().getTranslateX());
+    }
     
+    @Test
+    public void bodyMovesLeftCorrectly() {
+        this.player.movePlayerLeft();
+        assertEquals(-3, (int) this.player.getBody().getTranslateX());
+    }
+    
+    @Test
+    public void cannonMovesRightCorrectly() {
+        this.player.movePlayerRight();
+        assertEquals(3, (int) this.player.getCannon().getTranslateX());
+    }
+    
+    @Test
+    public void cannonMovesLeftCorrectly() {
+        this.player.movePlayerLeft();
+        assertEquals(-3, (int) this.player.getCannon().getTranslateX());
+    }
+    
+    @Test
+    public void shootReturnsAnAmmo() {
+        assertEquals(Ammo.class, this.player.shoot().getClass());
+    }
 }

@@ -1,7 +1,6 @@
 package spaceinvaders.characters;
 
 import java.util.ArrayList;
-import java.util.List;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -50,24 +49,24 @@ public class Enemy {
         this.isHit = bool;
     }
 
-    public void StartEnemyMovement(ArrayList<Enemy> enemyList) {
+    public void startEnemyMovement(ArrayList<Enemy> enemyList) {
         this.enemyList = enemyList;
-        EnemyMovementVertical(enemyList);
+        enemyMovementVertical(enemyList);
     }
 
-    public void EnemyMovementVertical(ArrayList<Enemy> enemyList) {
+    public void enemyMovementVertical(ArrayList<Enemy> enemyList) {
         this.enemyList = enemyList;
         for (Enemy enemy : enemyList) {
             enemy.getRectangle().setTranslateX(enemy.getRectangle().getTranslateX() + movementSpeedHorizontal);
 
             if (enemy.getRectangle().getTranslateX() >= 590 || enemy.getRectangle().getTranslateX() <= 18) {
-                MoveEnemyDown(enemyList);
+                moveEnemyDown(enemyList);
                 movementSpeedHorizontal = -movementSpeedHorizontal;
             }
         }
     }
 
-    public void MoveEnemyDown(ArrayList<Enemy> enemyList) {
+    public void moveEnemyDown(ArrayList<Enemy> enemyList) {
         this.enemyList = enemyList;
         boolean isAboveLine = true;
 
@@ -83,7 +82,7 @@ public class Enemy {
         }
     }
     
-    public boolean Collision (Ammo ammo) {
+    public boolean collision(Ammo ammo) {
         Shape collision = Shape.intersect(this.hitBox, ammo.getAmmo());
         return collision.getBoundsInLocal().getWidth() != -1;
     }

@@ -1,5 +1,6 @@
 package Tests.charactersTest;
 
+import javafx.geometry.Point2D;
 import spaceinvaders.characters.Ammo;
 import javafx.scene.paint.Paint;
 import org.junit.After;
@@ -32,5 +33,21 @@ public class AmmoTest {
     public void ammoWidthIsRight() {
         assertEquals(2, (int) ammo.getAmmo().getWidth());
     }
-
+    
+    @Test
+    public void ammoIsNotHitWhenCreated() {
+        assertEquals(false, ammo.getIsHit());
+    }
+    
+    @Test
+    public void setIsHitWorksCorrectly() {
+        ammo.setIsHit(true);
+        assertEquals(true, ammo.getIsHit());
+    }
+    
+    @Test
+    public void moveAmmoWorksCorrectly() {
+        ammo.moveAmmo();
+        assertEquals(-6, (int)ammo.getAmmo().getTranslateY());
+    }
 }

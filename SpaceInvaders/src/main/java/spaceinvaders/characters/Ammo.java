@@ -3,7 +3,6 @@ package spaceinvaders.characters;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 public class Ammo {
 
@@ -32,13 +31,9 @@ public class Ammo {
         this.isHit = bool;
     }
     
-    public void MoveAmmo() {
+    public void moveAmmo() {
         movement = new Point2D(0, movementSpeed);
         ammo.setTranslateY(ammo.getTranslateY() - movement.getY());
     }
     
-    public boolean Collission(Enemy enemy) {
-        Shape collision = Shape.intersect(this.ammo, enemy.getRectangle());
-        return collision.getBoundsInLocal().getWidth() != -1;
-    }
 }

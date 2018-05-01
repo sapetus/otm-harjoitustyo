@@ -100,12 +100,12 @@ public class SpaceInvadersUI extends Application {
         Text pointText = new Text("POINTS\n\n" + dao.getPointsAsString());
         pointText.setFill(Paint.valueOf("#ffffff"));
         pointText.setFont(new Font(20));
-        pointText.setTranslateX(40);
+        pointText.setTranslateX(80);
 
         Text returnToMenu = new Text("Menu");
         returnToMenu.setFill(Paint.valueOf("#ffffff"));
         returnToMenu.setFont(new Font(25));
-        returnToMenu.setTranslateY(-200);
+        returnToMenu.setTranslateY(-250);
         returnToMenu.setOnMouseClicked((MouseEvent mouseEvent) -> {
             this.primaryStage.setScene(menuScene);
         });

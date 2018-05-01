@@ -18,7 +18,7 @@ public class Enemy {
     int arcHeight = 5;
     boolean isHit;
 
-    public Enemy(int width, int height) {
+    public Enemy(double width, double height) {
         this.hitBox = new Rectangle();
         
         this.hitBox.setWidth(width);

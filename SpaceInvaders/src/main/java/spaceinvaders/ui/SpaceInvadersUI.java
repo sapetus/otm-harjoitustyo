@@ -1,5 +1,7 @@
 package spaceinvaders.ui;
 
+import java.sql.SQLException;
+import java.util.Scanner;
 import spaceinvaders.domain.HighScoresDao;
 import spaceinvaders.characters.Player;
 import java.util.ArrayList;
@@ -12,12 +14,14 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
@@ -38,7 +42,8 @@ public class SpaceInvadersUI extends Application {
     private final double enemyHeight = WIDTH * 0.0375;
     private Pane gamePlatform;
     private long time;
-    private int points = 0;
+    public int points = 0;
+    boolean nameInserted;
     private Stage primaryStage;
     private StackPane menu = new StackPane();
     private Scene menuScene = new Scene(menu);
@@ -51,8 +56,10 @@ public class SpaceInvadersUI extends Application {
     ArrayList<Ammo> ammoList = new ArrayList<>();
     HashMap<KeyCode, Boolean> keys = new HashMap<>();
     Text pointText = new Text("points: " + points);
+    HighScoresDao dao;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        HighScoresDao asd = new HighScoresDao();
         Application.launch(args);
     }
 
@@ -60,6 +67,7 @@ public class SpaceInvadersUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Space Invaders");
+        dao = new HighScoresDao();
 
         //Game start
         gamePlatform = new Pane();
@@ -90,17 +98,15 @@ public class SpaceInvadersUI extends Application {
         //Game end
 
         //HighScores start
-        HighScoresDao dao = new HighScoresDao();
-
         Text nameText = new Text("NAME\n\n" + dao.getNamesAsString());
         nameText.setFill(Paint.valueOf("#ffffff"));
-        nameText.setFont(new Font(20));
+        nameText.setFont(new Font("Times New Roman", 20));
         nameText.setTranslateX(-80);
 
-        Text pointText = new Text("POINTS\n\n" + dao.getPointsAsString());
-        pointText.setFill(Paint.valueOf("#ffffff"));
-        pointText.setFont(new Font(20));
-        pointText.setTranslateX(80);
+        Text pointsText = new Text("POINTS\n\n" + dao.getPointsAsString());
+        pointsText.setFill(Paint.valueOf("#ffffff"));
+        pointsText.setFont(new Font("Times New Roman", 20));
+        pointsText.setTranslateX(80);
 
         Text returnToMenu = new Text("Menu");
         returnToMenu.setFill(Paint.valueOf("#ffffff"));
@@ -125,7 +131,7 @@ public class SpaceInvadersUI extends Application {
                         Insets.EMPTY)
         ));
 
-        highScores.getChildren().addAll(nameText, pointText, returnToMenu);
+        highScores.getChildren().addAll(nameText, pointsText, returnToMenu);
         //HighScores end
 
         //Menu start
@@ -185,7 +191,7 @@ public class SpaceInvadersUI extends Application {
             if (keys.getOrDefault(KeyCode.RIGHT, false) && player.getBody().getTranslateX() < WIDTH * 0.9171875) {
                 player.movePlayerRight();
             }
-            if (keys.getOrDefault(KeyCode.SPACE, false) && System.currentTimeMillis() - time >= 900) {
+            if (keys.getOrDefault(KeyCode.SPACE, false) && System.currentTimeMillis() - time >= 100) {
                 Ammo ammo = player.shoot();
                 ammoList.add(ammo);
                 gamePlatform.getChildren().add(ammo.getAmmo());
@@ -228,6 +234,8 @@ public class SpaceInvadersUI extends Application {
                     .collect(Collectors.toList()));
 
             if (enemyArray.isEmpty()) {
+                gameAnimation.stop();
+                
                 StackPane gameOverScreen = new StackPane();
                 gameOverScreen.setPrefSize(WIDTH, HEIGHT);
                 gameOverScreen.setBackground(new Background(
@@ -237,17 +245,31 @@ public class SpaceInvadersUI extends Application {
                                 Insets.EMPTY)
                 ));
 
-                Text gameOverText = new Text("Game Over\n\n Your Points: " + points);
+                Text gameOverText = new Text("Game Over\n\n Your Points: " + points + "\n\nPlease Insert Name");
                 gameOverText.setFill(Paint.valueOf("#ffffff"));
                 gameOverText.setTextAlignment(TextAlignment.CENTER);
                 gameOverText.setFont(new Font(WIDTH * 0.046875));
-                gameOverScreen.getChildren().add(gameOverText);
+
+                TextField tf = new TextField();
+                tf.setMaxWidth(80);
+                tf.setAlignment(Pos.CENTER);
+                tf.setTranslateY(120);
+
+                gameOverScreen.getChildren().addAll(gameOverText, tf);
 
                 Scene gameOverScene = new Scene(gameOverScreen);
-
                 primaryStage.setScene(gameOverScene);
 
-                gameAnimation.stop();
+                gameOverScene.setOnKeyPressed((KeyEvent keyEvent) -> {
+                    if (keyEvent.getCode().equals(KeyCode.ENTER) && !(tf.getText() == null)) {
+                        try {
+                            dao.insertHighScore(tf.getText(), points);
+                            primaryStage.setScene(menuScene);
+                        } catch (SQLException ex) {
+                            System.out.println(ex.toString());
+                        }
+                    }
+                });
             }
         }
     };

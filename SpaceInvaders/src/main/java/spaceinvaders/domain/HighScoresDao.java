@@ -18,6 +18,7 @@ public class HighScoresDao {
                 listOfPoints[index] = resultSet.getInt("points");
                 index++;
             }
+            connection.close();
         }
     }
     
@@ -39,5 +40,12 @@ public class HighScoresDao {
         }
         
         return points;
+    }
+    
+    public void insertHighScore(String name, int points) throws SQLException {
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:highscores.db")) {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "INSERT INTO highscore(name, points) VALUES ('" + name + "'," + points + ")");
+        }
     }
 }

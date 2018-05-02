@@ -27,11 +27,10 @@ löytyy: /target/site/jacoco/index.html
 mvn package
 ###### jarin suorittaminen (ei toimi)
 /target kansiossa java -jar spaceinvaders-1.0-snapshot.jar
+### Javadoc
+mvn javadoc:javadoc
+löytyy /target/site/apidocs/index.html
 #### Checkstyle
-<<<<<<< HEAD
-
-=======
->>>>>>> c00c77a601630ec8baece2cd5965d5a9d7f2a5ef
 ###### tarkistaminen
 mvn jxr:jxr checkstyle:checkstyle
 löytyy: /target/site/checkstyle.html

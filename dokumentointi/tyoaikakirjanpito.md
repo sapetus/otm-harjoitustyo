@@ -16,5 +16,6 @@ viikko 4 |  | ammusten liikkuminen
 24.4. | 2 | testejä ja GameOver-screen. pisteiden laskeminen
 24.4.| 2 | yritin saada jaria toimimaan mutta tuloksetta
 1.5. | 2 | database ja GameOver-screen muokattu.
+2.5. | 1 | arkkitehtuuri.md muokattu
 2.5. | 2 | JavaDoc luotu ja dao muokattu
 yht. | 22 | 

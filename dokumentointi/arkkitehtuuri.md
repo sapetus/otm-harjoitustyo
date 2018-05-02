@@ -3,7 +3,7 @@
 ## Toiminta
 ![luokkakaavio](https://yuml.me/076a5fab.jpg)
 
-##Rakenne
+## Rakenne
 ![rakennekaavio](https://yuml.me/dd3c94f8.jpg)
 characters-kansio sisältää pelaaja-, ammus- ja vihollis-luokat. Domain sisältää daon, jolla pääsee käsiksi highscore tietokantaan
 

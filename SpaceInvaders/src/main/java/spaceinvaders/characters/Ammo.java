@@ -13,6 +13,9 @@ public class Ammo {
     
     Point2D movement;
 
+    /**
+     * Creates an ammo with a hitbox and a color
+     */
     public Ammo() {
         ammo = new Rectangle(2, 6);
         ammo.setFill(Paint.valueOf("#ffffff"));
@@ -31,6 +34,9 @@ public class Ammo {
         this.isHit = bool;
     }
     
+    /**
+     *  moves the specific ammo up
+     */
     public void moveAmmo() {
         movement = new Point2D(0, movementSpeed);
         ammo.setTranslateY(ammo.getTranslateY() - movement.getY());

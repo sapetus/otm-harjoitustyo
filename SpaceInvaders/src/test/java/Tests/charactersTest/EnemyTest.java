@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import spaceinvaders.characters.Ammo;
 
 public class EnemyTest {
     
@@ -71,5 +72,12 @@ public class EnemyTest {
         this.enemy.setIsHit(true);
         assertEquals(true, this.enemy.getIsHit());
     }
-    
+ 
+    @Test
+    public void collissionWorksCorrectly() {
+        Ammo ammo = new Ammo();
+        ammo.getAmmo().setTranslateX(this.enemy.getRectangle().getTranslateX());
+        ammo.getAmmo().setTranslateY(this.enemy.getRectangle().getTranslateY());
+        assertEquals(true, this.enemy.collision(ammo));
+    }
 }

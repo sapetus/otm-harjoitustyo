@@ -12,6 +12,10 @@ public class Player {
 
     double movementSpeed = 3;
 
+    /**
+     * Creates a new player with a cannon and a body hitbox.
+     * gives them color
+     */
     public Player() {
         this.body = new Polygon();
         this.cannon = new Polygon();
@@ -44,16 +48,30 @@ public class Player {
         return this.cannon;
     }
 
+    /**
+     * Moves the player (cannon and body) to the right
+     */
     public void movePlayerRight() {
         this.body.setTranslateX(this.body.getTranslateX() + movementSpeed);
         this.cannon.setTranslateX(this.cannon.getTranslateX() + movementSpeed);
     }
 
+    /**
+     * Moves the player (cannon and body) to the left
+     */
     public void movePlayerLeft() {
         this.body.setTranslateX(this.body.getTranslateX() - movementSpeed);
         this.cannon.setTranslateX(this.cannon.getTranslateX() - movementSpeed);
     }
 
+    /**
+     * Creates a new ammo at the player position and starts moving it.
+     * 
+     * @see spaceinvaders.characters.Ammo
+     * @see spaceinvaders.characters.Ammo#moveAmmo() 
+     * 
+     * @return a new ammo
+     */
     public Ammo shoot() {
         Ammo ammo = new Ammo();
 

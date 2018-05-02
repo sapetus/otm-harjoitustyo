@@ -18,6 +18,12 @@ public class Enemy {
     int arcHeight = 5;
     boolean isHit;
 
+    /**
+    * Creates an enemy with a hitbox, a color and given size
+    * 
+    * @param width sets the width of the enemy
+    * @param height sets the height of the enemy
+    */
     public Enemy(double width, double height) {
         this.hitBox = new Rectangle();
         
@@ -49,11 +55,27 @@ public class Enemy {
         this.isHit = bool;
     }
 
+    /**
+     * Only starts moving the given list of enemies
+     * 
+     * @see spaceinvaders.characters.Enemy#enemyMovementVertical(java.util.ArrayList)
+     * 
+     * @param enemyList List of enemies that need to be moved
+     */
     public void startEnemyMovement(ArrayList<Enemy> enemyList) {
         this.enemyList = enemyList;
         enemyMovementVertical(enemyList);
     }
 
+    /**
+     * Starts moving enemies to the right and if any enemy in the given lists 
+     * hits a specific point, starts moving them to the left and calls another 
+     * method that moves them down. 
+     * 
+     * @see spaceinvaders.characters.Enemy#moveEnemyDown(java.util.ArrayList) 
+     * 
+     * @param enemyList List of enemies that need to be moved
+     */
     public void enemyMovementVertical(ArrayList<Enemy> enemyList) {
         this.enemyList = enemyList;
         for (Enemy enemy : enemyList) {
@@ -66,6 +88,12 @@ public class Enemy {
         }
     }
 
+    /**
+     * Moves the given list of enemies down until one of them hits a point where
+     * they are not supposed to move down anymore
+     * 
+     * @param enemyList List of enemies that need to be moved
+     */
     public void moveEnemyDown(ArrayList<Enemy> enemyList) {
         this.enemyList = enemyList;
         boolean isAboveLine = true;
@@ -82,6 +110,14 @@ public class Enemy {
         }
     }
     
+    /**
+     * Checks if the enemy hit the given ammo
+     * 
+     * @see spaceinvaders.characters.Ammo
+     * 
+     * @param ammo Object that needs to be checked if it hit
+     * @return a boolean about if an ammo hit an enemy
+     */
     public boolean collision(Ammo ammo) {
         Shape collision = Shape.intersect(this.hitBox, ammo.getAmmo());
         return collision.getBoundsInLocal().getWidth() != -1;

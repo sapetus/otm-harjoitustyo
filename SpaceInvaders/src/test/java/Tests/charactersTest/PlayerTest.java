@@ -94,4 +94,15 @@ public class PlayerTest {
     public void shootReturnsAnAmmo() {
         assertEquals(Ammo.class, this.player.shoot().getClass());
     }
+    
+    @Test
+    public void generatedAmmoIsInRightPositionX() {
+        assertEquals((int) this.player.getCannon().getTranslateX(), (int)this.player.shoot().getAmmo().getTranslateX() - 1);
+    }
+    
+    @Test
+    public void generatedAmmoIsInRightPositionY() {
+        System.out.println(this.player.getCannon().getTranslateY());
+        assertEquals((int) this.player.getCannon().getTranslateY(), (int)this.player.shoot().getAmmo().getTranslateY() + 6);
+    }
 }

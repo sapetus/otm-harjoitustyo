@@ -1,4 +1,3 @@
-En jostain syystä saanut aikaan toimivaa jar-tiedostoa. Seurasin ohjeita mutta saan vain errorin, Could not find or load main class spaceinvaders.ui.SpaceInvadersUI
 
 
 ## Space Invaders
@@ -22,16 +21,19 @@ mvn compile exec:java -Dexec.mainClass=spaceinvaders.ui.SpaceInvadersUI
 mvn test
 ###### testiraportin luominen
 mvn test jacoco:report
+
 löytyy: /target/site/jacoco/index.html
 #### jarin generointi
 mvn package
-###### jarin suorittaminen (ei toimi)
+###### jarin suorittaminen
 /target kansiossa java -jar spaceinvaders-1.0-snapshot.jar
 ### Javadoc
 mvn javadoc:javadoc
+
 löytyy /target/site/apidocs/index.html
 #### Checkstyle
 ###### tarkistaminen
 mvn jxr:jxr checkstyle:checkstyle
+
 löytyy: /target/site/checkstyle.html
 

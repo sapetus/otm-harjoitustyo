@@ -1,3 +1,4 @@
+
 # Arkkitehtuurikuvaus
 
 ## Toiminta
@@ -9,5 +10,6 @@ characters-kansio sisältää pelaaja-, ammus- ja vihollis-luokat. Domain sisäl
 
 ## Toiminnallisuudet
 ![SpaceInvadersShooting](https://github.com/sapetus/otm-harjoitustyo/blob/master/dokumentointi/SpaceInvadersShooting.png)
+
 Yllä oleva sekvenssikaavio kuvastaa kuinka sovellus toimii kun pelaaja päätää ampua. Ampumisen yhteydessä pelaaja siis luo aina uuden ammuksen, jonka se palauttaa 
 loppujen lopuksi mainiin.

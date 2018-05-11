@@ -22,14 +22,25 @@ public class Ammo {
         this.isHit = false;
     }
 
+    /**
+     * @return hitbox of the given ammo
+     */
     public Rectangle getAmmo() {
         return this.ammo;
     }
 
+    /**
+     * @return returns boolean of ammos isHit value
+     */
     public boolean getIsHit() {
         return this.isHit;
     }
     
+    /**
+     * sets ammos isHit value to given boolean
+     * 
+     * @param bool boolean value 
+     */
     public void setIsHit(boolean bool) {
         this.isHit = bool;
     }

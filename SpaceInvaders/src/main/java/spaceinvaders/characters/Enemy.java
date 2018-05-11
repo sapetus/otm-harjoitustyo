@@ -35,22 +35,38 @@ public class Enemy {
         this.isHit = false;
     }
 
+    /**
+     * @return Returns given enemys width
+     */
     public double getWidth() {
         return this.hitBox.getWidth();
     }
 
+    /**
+     * @return Returns given enemys height 
+     */
     public double getHeight() {
         return this.hitBox.getHeight();
     }
 
+    /**
+     * @return  Returns given enemys hitbox
+     */
     public Rectangle getRectangle() {
         return this.hitBox;
     }
     
+    /**
+     * @return Returns given enemys isHit value
+     */
     public boolean getIsHit() {
         return this.isHit;
     }
     
+    /**
+     * sets enemys isHit value to given boolean
+     * @param bool boolean value
+     */
     public void setIsHit(boolean bool) {
         this.isHit = bool;
     }

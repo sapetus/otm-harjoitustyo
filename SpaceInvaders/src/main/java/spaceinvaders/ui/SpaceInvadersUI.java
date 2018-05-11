@@ -274,6 +274,9 @@ public class SpaceInvadersUI extends Application {
         }
     };
 
+    /**
+     * Fills the game platform with needed amount of enemies
+     */
     public void FillBoardWithEnemies() {
         int enemyIndex = 0;
 
@@ -292,6 +295,9 @@ public class SpaceInvadersUI extends Application {
         }
     }
 
+    /**
+     * Creates player to the game platform
+     */
     public void CreatePlayer() {
         this.player = new Player();
 

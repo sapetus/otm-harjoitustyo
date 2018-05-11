@@ -40,10 +40,16 @@ public class Player {
         player[1] = cannon;
     }
 
+    /**
+     * @return returns players body rectangle
+     */
     public Polygon getBody() {
         return this.body;
     }
 
+    /**
+     * @return returns players cannon rectangle
+     */
     public Polygon getCannon() {
         return this.cannon;
     }

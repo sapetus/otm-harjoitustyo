@@ -59,7 +59,6 @@ public class SpaceInvadersUI extends Application {
     HighScoresDao dao;
 
     public static void main(String[] args) throws Exception {
-        HighScoresDao asd = new HighScoresDao();
         Application.launch(args);
     }
 
@@ -191,7 +190,7 @@ public class SpaceInvadersUI extends Application {
             if (keys.getOrDefault(KeyCode.RIGHT, false) && player.getBody().getTranslateX() < WIDTH * 0.9171875) {
                 player.movePlayerRight();
             }
-            if (keys.getOrDefault(KeyCode.SPACE, false) && System.currentTimeMillis() - time >= 100) {
+            if (keys.getOrDefault(KeyCode.SPACE, false) && System.currentTimeMillis() - time >= 900) {
                 Ammo ammo = player.shoot();
                 ammoList.add(ammo);
                 gamePlatform.getChildren().add(ammo.getAmmo());

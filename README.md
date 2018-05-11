@@ -11,8 +11,8 @@ kirjaa e$
 
 [arkkitehtuuri](https://github.com/sapetus/otm-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
 
-## Releaset
-
+## Release
+[release](https://github.com/sapetus/otm-harjoitustyo/releases/tag/release_1)
 
 ## Komentorivi toiminnot
 #### sovelluksen suorittaminen

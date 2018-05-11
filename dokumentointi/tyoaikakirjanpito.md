@@ -18,4 +18,5 @@ viikko 4 |  | ammusten liikkuminen
 1.5. | 2 | database ja GameOver-screen muokattu.
 2.5. | 1 | arkkitehtuuri.md muokattu
 2.5. | 2 | JavaDoc luotu ja dao muokattu
-yht. | 22 | 
+11.5.| 3 | Projektin viimeistelyä (testejä, dao, dokumentointi...)
+yht. | 25 | 
